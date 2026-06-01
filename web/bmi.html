@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Oasis BMI Calculator</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero hero-bmi">
+        <header class="site-header">
+          <div class="brand-lockup">
+            <span class="brand-mark">O</span>
+            <div>
+              <p class="brand-name">Oasis</p>
+              <p class="brand-tag">Health and utility tools</p>
+            </div>
+          </div>
+          <nav class="nav-links nav-links-inline">
+            <a class="nav-link" href="/">Password generator</a>
+            <a class="nav-link nav-link-active" href="/bmi-calculator">BMI calculator</a>
+            <a class="nav-link" href="/#chat-panel">Chat</a>
+          </nav>
+        </header>
+
+        <div class="hero-copy">
+          <p class="eyebrow">Health utility</p>
+          <h1>Calculate your BMI with a simple, validated browser form.</h1>
+          <p class="lede">Enter your weight in kilograms and height in meters, then get your BMI value and category instantly. The page keeps validation strict so the results stay meaningful.</p>
+
+          <div class="hero-actions">
+            <a class="cta-button cta-primary" href="#bmi-form">Calculate BMI</a>
+            <a class="cta-button cta-secondary" href="/">Open password generator</a>
+          </div>
+
+          <div class="hero-stats">
+            <article>
+              <strong>kg</strong>
+              <span>weight input</span>
+            </article>
+            <article>
+              <strong>m</strong>
+              <span>height input</span>
+            </article>
+            <article>
+              <strong>BMI</strong>
+              <span>category result</span>
+            </article>
+          </div>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card">
+            <p class="feature-label">Formula</p>
+            <h2>BMI = weight / height²</h2>
+            <p>The calculator uses the standard metric formula for a quick estimate.</p>
+          </article>
+          <article class="feature-card">
+            <p class="feature-label">Categories</p>
+            <h2>Underweight, normal, overweight, obese</h2>
+            <p>Results are mapped to familiar BMI ranges so the output is easy to understand.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel bmi-panel" id="bmi-form">
+        <header class="panel-header">
+          <div>
+            <h2>BMI Calculator</h2>
+            <p id="bmiStatus">Enter your measurements to calculate your BMI.</p>
+          </div>
+          <div class="badge" id="bmiBadge">Ready</div>
+        </header>
+
+        <form class="bmi-form" id="bmiCalculatorForm">
+          <label class="control-row">
+            <span>Weight (kg)</span>
+            <input id="weightInput" type="number" min="1" step="0.1" placeholder="e.g. 70" />
+          </label>
+
+          <label class="control-row">
+            <span>Height (m)</span>
+            <input id="heightInput" type="number" min="0.5" max="2.5" step="0.01" placeholder="e.g. 1.75" />
+          </label>
+
+          <button class="generate-button" type="submit">Calculate BMI</button>
+        </form>
+
+        <section class="bmi-result" aria-live="polite">
+          <p class="feature-label">Result</p>
+          <div class="bmi-value" id="bmiValue">--</div>
+          <p class="bmi-category" id="bmiCategory">Your category will appear here.</p>
+          <p class="bmi-note" id="bmiNote">Enter values in kilograms and meters to begin.</p>
+        </section>
+      </section>
+    </main>
+
+    <script src="/bmi.js"></script>
+  </body>
+</html>

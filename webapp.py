@@ -68,37 +68,106 @@ INDEX_HTML = load_text(
   <head>
     <meta charset=\"utf-8\" />
     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />
-    <title>Oasis Chat</title>
+    <title>Oasis Home</title>
     <link rel=\"stylesheet\" href=\"/styles.css\" />
   </head>
   <body>
-    <main class=\"shell\">
-      <section class=\"hero\">
-        <p class=\"eyebrow\">Realtime conversation space</p>
-        <h1>Oasis Chat</h1>
-        <p class=\"lede\">A clean browser-based chat room powered by Python. Open it in multiple tabs or share the link with teammates.</p>
+    <main class=\"shell shell-landing\">
+      <section class=\"hero hero-landing\">
+        <header class=\"site-header\">
+          <div class=\"brand-lockup\">
+            <span class=\"brand-mark\">O</span>
+            <div>
+              <p class=\"brand-name\">Oasis</p>
+              <p class=\"brand-tag\">Security and utility tools</p>
+            </div>
+          </div>
+          <nav class=\"nav-links nav-links-inline\">
+            <a class=\"nav-link nav-link-active\" href=\"/\">Home</a>
+            <a class=\"nav-link\" href=\"/password-generator\">Password generator</a>
+            <a class=\"nav-link\" href=\"/bmi-calculator\">BMI calculator</a>
+          </nav>
+        </header>
+
+        <div class=\"hero-copy\">
+          <p class=\"eyebrow\">Tool hub</p>
+          <h1>Pick a page, then use the tool you need.</h1>
+          <p class=\"lede\">Oasis keeps each feature on its own page: a password generator, a BMI calculator, and a chat room for testing. Nothing is bundled into one screen.</p>
+
+          <div class=\"hero-actions\">
+            <a class=\"cta-button cta-primary\" href=\"/password-generator\">Open password generator</a>
+            <a class=\"cta-button cta-secondary\" href=\"/bmi-calculator\">Open BMI calculator</a>
+          </div>
+
+          <div class=\"hero-stats\">
+            <article>
+              <strong>3</strong>
+              <span>separate pages</span>
+            </article>
+            <article>
+              <strong>1</strong>
+              <span>tool per page</span>
+            </article>
+            <article>
+              <strong>0</strong>
+              <span>mixed layouts</span>
+            </article>
+          </div>
+        </div>
+
+        <div class=\"feature-grid\">
+          <article class=\"feature-card\">
+            <p class=\"feature-label\">Password generator</p>
+            <h2>Create strong passwords in one click</h2>
+            <p>Use the dedicated generator page for secure, configurable passwords.</p>
+          </article>
+          <article class=\"feature-card\">
+            <p class=\"feature-label\">BMI calculator</p>
+            <h2>Estimate BMI on its own page</h2>
+            <p>Enter weight and height on the BMI route without extra content around it.</p>
+          </article>
+        </div>
       </section>
 
       <section class=\"panel\">
         <header class=\"panel-header\">
           <div>
-            <h2>Live Room</h2>
-            <p id=\"status\">Connecting to the room...</p>
+            <h2>Quick links</h2>
+            <p>Open the page you want without mixing the tools together.</p>
           </div>
-          <div class=\"badge\" id=\"onlineCount\">0 online</div>
+          <div class=\"badge\">Landing page</div>
         </header>
 
-        <div class=\"chat-log\" id=\"chatLog\" aria-live=\"polite\"></div>
+        <div class=\"chat-log\">
+          <article class=\"message\">
+            <div class=\"meta\">
+              <span class=\"name\">Password generator</span>
+              <span>Dedicated page</span>
+            </div>
+            <div class=\"body\">Adjust length, letters, numbers, and symbols on the generator page.</div>
+          </article>
+          <article class=\"message\">
+            <div class=\"meta\">
+              <span class=\"name\">BMI calculator</span>
+              <span>Dedicated page</span>
+            </div>
+            <div class=\"body\">Use the BMI page for a simple weight and height calculation.</div>
+          </article>
+          <article class=\"message\">
+            <div class=\"meta\">
+              <span class=\"name\">Chat room</span>
+              <span>Reference</span>
+            </div>
+            <div class=\"body\">The chat experience remains available in the site and API for testing.</div>
+          </article>
+        </div>
 
-        <form class=\"composer\" id=\"composer\">
-          <input id=\"nameInput\" name=\"name\" type=\"text\" maxlength=\"32\" placeholder=\"Your name\" />
-          <input id=\"messageInput\" name=\"message\" type=\"text\" maxlength=\"500\" placeholder=\"Type a message\" autocomplete=\"off\" />
-          <button type=\"submit\">Send</button>
-        </form>
+        <div class=\"hero-actions\">
+          <a class=\"cta-button cta-primary\" href=\"/password-generator\">Password page</a>
+          <a class=\"cta-button cta-secondary\" href=\"/bmi-calculator\">BMI page</a>
+        </div>
       </section>
     </main>
-
-    <script src=\"/app.js\"></script>
   </body>
 </html>
 """,
@@ -163,6 +232,189 @@ PASSWORD_HTML = load_text(
     <script src=\"/password.js\"></script>
   </body>
 </html>
+""",
+)
+
+BMI_HTML = load_text(
+    WEB_DIR / "bmi.html",
+    """<!doctype html>
+<html lang=\"en\">
+  <head>
+    <meta charset=\"utf-8\" />
+    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />
+    <title>Oasis BMI Calculator</title>
+    <link rel=\"stylesheet\" href=\"/styles.css\" />
+  </head>
+  <body>
+    <main class=\"shell\">
+      <section class=\"hero hero-bmi\">
+        <header class=\"site-header\">
+          <div class=\"brand-lockup\">
+            <span class=\"brand-mark\">O</span>
+            <div>
+              <p class=\"brand-name\">Oasis</p>
+              <p class=\"brand-tag\">Health and utility tools</p>
+            </div>
+          </div>
+          <nav class=\"nav-links nav-links-inline\">
+            <a class=\"nav-link\" href=\"/\">Password generator</a>
+            <a class=\"nav-link nav-link-active\" href=\"/bmi-calculator\">BMI calculator</a>
+            <a class=\"nav-link\" href=\"/#chat-panel\">Chat</a>
+          </nav>
+        </header>
+
+        <div class=\"hero-copy\">
+          <p class=\"eyebrow\">Health utility</p>
+          <h1>Calculate your BMI with a simple, validated browser form.</h1>
+          <p class=\"lede\">Enter your weight in kilograms and height in meters, then get your BMI value and category instantly. The page keeps validation strict so the results stay meaningful.</p>
+
+          <div class=\"hero-actions\">
+            <a class=\"cta-button cta-primary\" href=\"#bmi-form\">Calculate BMI</a>
+            <a class=\"cta-button cta-secondary\" href=\"/\">Open password generator</a>
+          </div>
+
+          <div class=\"hero-stats\">
+            <article>
+              <strong>kg</strong>
+              <span>weight input</span>
+            </article>
+            <article>
+              <strong>m</strong>
+              <span>height input</span>
+            </article>
+            <article>
+              <strong>BMI</strong>
+              <span>category result</span>
+            </article>
+          </div>
+        </div>
+
+        <div class=\"feature-grid\">
+          <article class=\"feature-card\">
+            <p class=\"feature-label\">Formula</p>
+            <h2>BMI = weight / height²</h2>
+            <p>The calculator uses the standard metric formula for a quick estimate.</p>
+          </article>
+          <article class=\"feature-card\">
+            <p class=\"feature-label\">Categories</p>
+            <h2>Underweight, normal, overweight, obese</h2>
+            <p>Results are mapped to familiar BMI ranges so the output is easy to understand.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class=\"panel bmi-panel\" id=\"bmi-form\">
+        <header class=\"panel-header\">
+          <div>
+            <h2>BMI Calculator</h2>
+            <p id=\"bmiStatus\">Enter your measurements to calculate your BMI.</p>
+          </div>
+          <div class=\"badge\" id=\"bmiBadge\">Ready</div>
+        </header>
+
+        <form class=\"bmi-form\" id=\"bmiCalculatorForm\">
+          <label class=\"control-row\">
+            <span>Weight (kg)</span>
+            <input id=\"weightInput\" type=\"number\" min=\"1\" step=\"0.1\" placeholder=\"e.g. 70\" />
+          </label>
+
+          <label class=\"control-row\">
+            <span>Height (m)</span>
+            <input id=\"heightInput\" type=\"number\" min=\"0.5\" max=\"2.5\" step=\"0.01\" placeholder=\"e.g. 1.75\" />
+          </label>
+
+          <button class=\"generate-button\" type=\"submit\">Calculate BMI</button>
+        </form>
+
+        <section class=\"bmi-result\" aria-live=\"polite\">
+          <p class=\"feature-label\">Result</p>
+          <div class=\"bmi-value\" id=\"bmiValue\">--</div>
+          <p class=\"bmi-category\" id=\"bmiCategory\">Your category will appear here.</p>
+          <p class=\"bmi-note\" id=\"bmiNote\">Enter values in kilograms and meters to begin.</p>
+        </section>
+      </section>
+    </main>
+
+    <script src=\"/bmi.js\"></script>
+  </body>
+</html>
+""",
+)
+
+BMI_JS = load_text(
+    WEB_DIR / "bmi.js",
+    """const bmiCalculatorForm = document.getElementById("bmiCalculatorForm");
+const weightInput = document.getElementById("weightInput");
+const heightInput = document.getElementById("heightInput");
+const bmiValue = document.getElementById("bmiValue");
+const bmiCategory = document.getElementById("bmiCategory");
+const bmiNote = document.getElementById("bmiNote");
+const bmiStatus = document.getElementById("bmiStatus");
+const bmiBadge = document.getElementById("bmiBadge");
+
+function roundToTwo(value) {
+  return Math.round(value * 100) / 100;
+}
+
+function getCategory(bmi) {
+  if (bmi < 18.5) {
+    return { label: "Underweight", note: "A BMI below 18.5 falls in the underweight range." };
+  }
+
+  if (bmi < 25) {
+    return { label: "Normal weight", note: "A BMI between 18.5 and 24.9 is considered normal weight." };
+  }
+
+  if (bmi < 30) {
+    return { label: "Overweight", note: "A BMI between 25 and 29.9 falls in the overweight range." };
+  }
+
+  return { label: "Obese", note: "A BMI of 30 or above falls in the obese range." };
+}
+
+function showError(message) {
+  bmiValue.textContent = "--";
+  bmiCategory.textContent = "Check your inputs";
+  bmiNote.textContent = message;
+  bmiBadge.textContent = "Input needed";
+  bmiStatus.textContent = message;
+}
+
+bmiCalculatorForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const weight = Number.parseFloat(weightInput.value);
+  const height = Number.parseFloat(heightInput.value);
+
+  if (!Number.isFinite(weight) || !Number.isFinite(height)) {
+    showError("Please enter both weight and height as numbers.");
+    return;
+  }
+
+  if (weight <= 0 || height <= 0) {
+    showError("Weight and height must be greater than zero.");
+    return;
+  }
+
+  if (weight > 500 || height > 3) {
+    showError("Please enter realistic weight and height values.");
+    return;
+  }
+
+  const bmi = weight / (height * height);
+  const roundedBmi = roundToTwo(bmi);
+  const category = getCategory(bmi);
+
+  bmiValue.textContent = roundedBmi.toFixed(2);
+  bmiCategory.textContent = category.label;
+  bmiNote.textContent = category.note;
+  bmiBadge.textContent = category.label;
+  bmiStatus.textContent = `BMI calculated successfully for ${weight.toFixed(1)} kg and ${height.toFixed(2)} m.`;
+});
+
+bmiValue.textContent = "--";
+bmiCategory.textContent = "Your category will appear here.";
+bmiNote.textContent = "Enter values in kilograms and meters to begin.";
 """,
 )
 
@@ -656,6 +908,10 @@ class ChatHandler(BaseHTTPRequestHandler):
           self._send_text(HTTPStatus.OK, PASSWORD_HTML, "text/html")
           return
 
+        if parsed.path == "/bmi-calculator":
+            self._send_text(HTTPStatus.OK, BMI_HTML, "text/html")
+            return
+
         if parsed.path == "/styles.css":
             self._send_text(HTTPStatus.OK, STYLES_CSS, "text/css")
             return
@@ -667,6 +923,10 @@ class ChatHandler(BaseHTTPRequestHandler):
         if parsed.path == "/password.js":
           self._send_text(HTTPStatus.OK, PASSWORD_JS, "application/javascript")
           return
+
+        if parsed.path == "/bmi.js":
+            self._send_text(HTTPStatus.OK, BMI_JS, "application/javascript")
+            return
 
         if parsed.path == "/api/messages":
             self._handle_messages(parsed.query)

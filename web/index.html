@@ -2,91 +2,106 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-      <section class="hero">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Oasis Home</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="shell shell-landing">
+      <section class="hero hero-landing">
         <header class="site-header">
           <div class="brand-lockup">
-            <main class="shell">
-              <section class="hero hero-password">
+            <span class="brand-mark">O</span>
+            <div>
               <p class="brand-name">Oasis</p>
-              <p class="brand-tag">Python-powered web tools</p>
+              <p class="brand-tag">Security and utility tools</p>
             </div>
           </div>
           <nav class="nav-links nav-links-inline">
-                      <p class="brand-tag">Python-powered password tools</p>
+            <a class="nav-link nav-link-active" href="/">Home</a>
             <a class="nav-link" href="/password-generator">Password generator</a>
+            <a class="nav-link" href="/bmi-calculator">BMI calculator</a>
           </nav>
         </header>
-                    <a class="nav-link nav-link-active" href="/">Password generator</a>
-                    <a class="nav-link" href="/password-generator">Generator page</a>
-                    <a class="nav-link" href="#chat-panel">Chat</a>
-          <p class="eyebrow">Realtime conversation space</p>
-          <h1>Build, chat, and generate secure passwords in one polished web app.</h1>
-          <p class="lede">Oasis combines a real-time chat room with a fast password generator, all served by a lightweight Python backend. It is designed to feel like a modern product site instead of a bare demo.</p>
 
-                  <p class="eyebrow">Security utility</p>
-                  <h1>Generate strong passwords with a clean, modern web experience.</h1>
-                  <p class="lede">Oasis now presents itself as a password generator first, with a dedicated tool page and a lightweight chat section below for reference and testing.</p>
+        <div class="hero-copy">
+          <p class="eyebrow">Tool hub</p>
+          <h1>Pick a page, then use the tool you need.</h1>
+          <p class="lede">Oasis keeps each feature on its own page: a password generator, a BMI calculator, and a chat room for testing. Nothing is bundled into one screen.</p>
+
+          <div class="hero-actions">
+            <a class="cta-button cta-primary" href="/password-generator">Open password generator</a>
+            <a class="cta-button cta-secondary" href="/bmi-calculator">Open BMI calculator</a>
           </div>
 
-                    <a class="cta-button cta-primary" href="/password-generator">Open generator</a>
-                    <a class="cta-button cta-secondary" href="#chat-panel">View chat</a>
-              <strong>2</strong>
-              <span>interactive pages</span>
+          <div class="hero-stats">
+            <article>
+              <strong>3</strong>
+              <span>separate pages</span>
             </article>
             <article>
-                      <strong>32</strong>
-                      <span>max password length</span>
+              <strong>1</strong>
+              <span>tool per page</span>
             </article>
             <article>
-                      <strong>4</strong>
-                      <span>character groups</span>
+              <strong>0</strong>
+              <span>mixed layouts</span>
             </article>
           </div>
-                      <strong>1</strong>
-                      <span>click to copy</span>
+        </div>
+
         <div class="feature-grid">
           <article class="feature-card">
-            <p class="feature-label">Live chat</p>
-            <h2>Text-based, multi-client messaging</h2>
-            <p>Open the page in multiple tabs and watch messages appear instantly across every connected client.</p>
+            <p class="feature-label">Password generator</p>
+            <h2>Create strong passwords in one click</h2>
+            <p>Use the dedicated generator page for secure, configurable passwords.</p>
           </article>
-                    <p class="feature-label">Password rules</p>
-                    <h2>Choose length, letters, numbers, and symbols</h2>
-                    <p>Use the generator controls to tailor the password strength to your exact needs.</p>
-            <p>Choose the character mix and length, then copy a strong password with a single click.</p>
+          <article class="feature-card">
+            <p class="feature-label">BMI calculator</p>
+            <h2>Estimate BMI on its own page</h2>
+            <p>Enter weight and height on the BMI route without extra content around it.</p>
           </article>
-                    <p class="feature-label">Secondary page</p>
-                    <h2>Keep chat available as a separate tool</h2>
-                    <p>The chat panel remains below for quick testing, but the website now leads with the password generator experience.</p>
-      <section class="panel" id="chat-panel">
-        <p class="eyebrow">Realtime conversation space</p>
-        <h1>Oasis Chat</h1>
-        <p class="lede">A clean browser-based chat room powered by Python. Open it in multiple tabs or share the link with teammates.</p>
-        <div class="nav-links">
-          <a class="nav-link nav-link-active" href="/">Chat</a>
-          <a class="nav-link" href="/password-generator">Password generator</a>
-                    <h2>Chat Reference Panel</h2>
-                    <p id="status">Connecting to the room...</p>
+        </div>
+      </section>
 
       <section class="panel">
         <header class="panel-header">
           <div>
-            <h2>Live Room</h2>
-            <p id="status">Connecting to the room...</p>
+            <h2>Quick links</h2>
+            <p>Open the page you want without mixing the tools together.</p>
           </div>
-          <div class="badge" id="onlineCount">0 messages</div>
+          <div class="badge">Landing page</div>
         </header>
 
-        <div class="chat-log" id="chatLog" aria-live="polite"></div>
+        <div class="chat-log">
+          <article class="message">
+            <div class="meta">
+              <span class="name">Password generator</span>
+              <span>Dedicated page</span>
+            </div>
+            <div class="body">Adjust length, letters, numbers, and symbols on the generator page.</div>
+          </article>
+          <article class="message">
+            <div class="meta">
+              <span class="name">BMI calculator</span>
+              <span>Dedicated page</span>
+            </div>
+            <div class="body">Use the BMI page for a simple weight and height calculation.</div>
+          </article>
+          <article class="message">
+            <div class="meta">
+              <span class="name">Chat room</span>
+              <span>Reference</span>
+            </div>
+            <div class="body">The chat experience remains available in the site and API for testing.</div>
+          </article>
+        </div>
 
-        <form class="composer" id="composer">
-          <input id="nameInput" name="name" type="text" maxlength="32" placeholder="Your name" />
-          <input id="messageInput" name="message" type="text" maxlength="500" placeholder="Type a message" autocomplete="off" />
-          <button type="submit">Send</button>
-        </form>
+        <div class="hero-actions">
+          <a class="cta-button cta-primary" href="/password-generator">Password page</a>
+          <a class="cta-button cta-secondary" href="/bmi-calculator">BMI page</a>
+        </div>
       </section>
     </main>
-
-    <script src="/app.js"></script>
   </body>
 </html>

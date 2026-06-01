@@ -431,6 +431,45 @@ h1 {
   justify-self: start;
 }
 
+.bmi-panel {
+  grid-template-rows: auto auto 1fr;
+}
+
+.bmi-form {
+  display: grid;
+  gap: 14px;
+}
+
+.bmi-result {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+  padding: 18px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.bmi-value {
+  font-size: clamp(3rem, 7vw, 5rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+.bmi-category {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--accent-strong);
+}
+
+.bmi-note {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
 @media (max-width: 900px) {
   body {
     padding: 18px;
