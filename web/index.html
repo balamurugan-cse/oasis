@@ -2,16 +2,69 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Oasis Chat</title>
-    <link rel="stylesheet" href="/styles.css" />
-  </head>
+      <section class="hero">
+        <header class="site-header">
+          <div class="brand-lockup">
+            <span class="brand-mark">O</span>
+            <div>
+              <p class="brand-name">Oasis</p>
+              <p class="brand-tag">Python-powered web tools</p>
+            </div>
+          </div>
+          <nav class="nav-links nav-links-inline">
+            <a class="nav-link nav-link-active" href="/">Home</a>
+            <a class="nav-link" href="/password-generator">Password generator</a>
+          </nav>
+        </header>
+
+        <div class="hero-copy">
+          <p class="eyebrow">Realtime conversation space</p>
+          <h1>Build, chat, and generate secure passwords in one polished web app.</h1>
+          <p class="lede">Oasis combines a real-time chat room with a fast password generator, all served by a lightweight Python backend. It is designed to feel like a modern product site instead of a bare demo.</p>
+
+          <div class="hero-actions">
+            <a class="cta-button cta-primary" href="#chat-panel">Open chat</a>
+            <a class="cta-button cta-secondary" href="/password-generator">Try password generator</a>
+          </div>
+
+          <div class="hero-stats">
+            <article>
+              <strong>2</strong>
+              <span>interactive pages</span>
+            </article>
+            <article>
+              <strong>100%</strong>
+              <span>browser-based</span>
+            </article>
+            <article>
+              <strong>Python</strong>
+              <span>server-driven</span>
+            </article>
+          </div>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card">
+            <p class="feature-label">Live chat</p>
+            <h2>Text-based, multi-client messaging</h2>
+            <p>Open the page in multiple tabs and watch messages appear instantly across every connected client.</p>
+          </article>
+          <article class="feature-card">
+            <p class="feature-label">Secure utility</p>
+            <h2>Generate stronger passwords</h2>
+            <p>Choose the character mix and length, then copy a strong password with a single click.</p>
+          </article>
+        </div>
   <body>
     <main class="shell">
-      <section class="hero">
+      <section class="panel" id="chat-panel">
         <p class="eyebrow">Realtime conversation space</p>
         <h1>Oasis Chat</h1>
         <p class="lede">A clean browser-based chat room powered by Python. Open it in multiple tabs or share the link with teammates.</p>
+        <div class="nav-links">
+          <a class="nav-link nav-link-active" href="/">Chat</a>
+          <a class="nav-link" href="/password-generator">Password generator</a>
+        </div>
       </section>
 
       <section class="panel">

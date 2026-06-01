@@ -104,6 +104,68 @@ INDEX_HTML = load_text(
 """,
 )
 
+PASSWORD_HTML = load_text(
+    WEB_DIR / "password.html",
+    """<!doctype html>
+<html lang=\"en\">
+  <head>
+    <meta charset=\"utf-8\" />
+    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />
+    <title>Oasis Password Generator</title>
+    <link rel=\"stylesheet\" href=\"/styles.css\" />
+  </head>
+  <body>
+    <main class=\"shell\">
+      <section class=\"hero hero-password\">
+        <div>
+          <p class=\"eyebrow\">Utility page</p>
+          <h1>Password Generator</h1>
+          <p class=\"lede\">Create strong, customizable passwords in the browser. Adjust the length and character mix, then copy the result in one click.</p>
+        </div>
+
+        <div class=\"nav-links\">
+          <a class=\"nav-link\" href=\"/\">Back to chat</a>
+          <a class=\"nav-link nav-link-active\" href=\"/password-generator\">Password generator</a>
+        </div>
+      </section>
+
+      <section class=\"panel generator-panel\">
+        <header class=\"panel-header\">
+          <div>
+            <h2>Generate Secure Passwords</h2>
+            <p id=\"generatorStatus\">Choose your options and generate a password.</p>
+          </div>
+          <div class=\"badge\" id=\"strengthBadge\">Ready</div>
+        </header>
+
+        <div class=\"generator-output\">
+          <input id=\"passwordOutput\" type=\"text\" readonly aria-label=\"Generated password\" />
+          <button type=\"button\" id=\"copyButton\">Copy</button>
+        </div>
+
+        <form class=\"generator-controls\" id=\"generatorForm\">
+          <label class=\"control-row\">
+            <span>Length</span>
+            <input id=\"lengthInput\" type=\"range\" min=\"8\" max=\"32\" value=\"16\" />
+            <strong id=\"lengthValue\">16</strong>
+          </label>
+
+          <label class=\"checkbox-row\"><input id=\"lowercaseInput\" type=\"checkbox\" checked /> Lowercase letters</label>
+          <label class=\"checkbox-row\"><input id=\"uppercaseInput\" type=\"checkbox\" checked /> Uppercase letters</label>
+          <label class=\"checkbox-row\"><input id=\"numbersInput\" type=\"checkbox\" checked /> Numbers</label>
+          <label class=\"checkbox-row\"><input id=\"symbolsInput\" type=\"checkbox\" checked /> Symbols</label>
+
+          <button class=\"generate-button\" type=\"submit\">Generate Password</button>
+        </form>
+      </section>
+    </main>
+
+    <script src=\"/password.js\"></script>
+  </body>
+</html>
+""",
+)
+
 STYLES_CSS = load_text(
     WEB_DIR / "styles.css",
     """* {
@@ -451,6 +513,111 @@ fetchMessages();
 """,
 )
 
+PASSWORD_JS = load_text(
+    WEB_DIR / "password.js",
+    """const passwordOutput = document.getElementById("passwordOutput");
+const copyButton = document.getElementById("copyButton");
+const generatorForm = document.getElementById("generatorForm");
+const lengthInput = document.getElementById("lengthInput");
+const lengthValue = document.getElementById("lengthValue");
+const lowercaseInput = document.getElementById("lowercaseInput");
+const uppercaseInput = document.getElementById("uppercaseInput");
+const numbersInput = document.getElementById("numbersInput");
+const symbolsInput = document.getElementById("symbolsInput");
+const strengthBadge = document.getElementById("strengthBadge");
+const generatorStatus = document.getElementById("generatorStatus");
+
+const pools = {
+  lowercase: "abcdefghijklmnopqrstuvwxyz",
+  uppercase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+  numbers: "0123456789",
+  symbols: "!@#$%^&*()-_=+[]{};:,.?/",
+};
+
+function randomInt(max) {
+  return crypto.getRandomValues(new Uint32Array(1))[0] % max;
+}
+
+function pickCharacter(source) {
+  return source[randomInt(source.length)];
+}
+
+function shuffleCharacters(values) {
+  for (let index = values.length - 1; index > 0; index -= 1) {
+    const swapIndex = randomInt(index + 1);
+    [values[index], values[swapIndex]] = [values[swapIndex], values[index]];
+  }
+  return values;
+}
+
+function getSelectedPools() {
+  const selected = [];
+  if (lowercaseInput.checked) selected.push(pools.lowercase);
+  if (uppercaseInput.checked) selected.push(pools.uppercase);
+  if (numbersInput.checked) selected.push(pools.numbers);
+  if (symbolsInput.checked) selected.push(pools.symbols);
+  return selected;
+}
+
+function scoreStrength(length, poolCount) {
+  if (length < 12 || poolCount < 2) return "Weak";
+  if (length < 18 || poolCount < 3) return "Good";
+  return "Strong";
+}
+
+function generatePassword() {
+  const length = Number(lengthInput.value);
+  const selectedPools = getSelectedPools();
+
+  if (selectedPools.length === 0) {
+    generatorStatus.textContent = "Select at least one character set.";
+    strengthBadge.textContent = "Needs options";
+    passwordOutput.value = "";
+    return;
+  }
+
+  const characters = [];
+  for (const pool of selectedPools) {
+    characters.push(pickCharacter(pool));
+  }
+
+  const combinedPool = selectedPools.join("");
+  while (characters.length < length) {
+    characters.push(pickCharacter(combinedPool));
+  }
+
+  const password = shuffleCharacters(characters).join("");
+  passwordOutput.value = password;
+  generatorStatus.textContent = "Password generated successfully.";
+  strengthBadge.textContent = scoreStrength(length, selectedPools.length);
+}
+
+lengthInput.addEventListener("input", () => {
+  lengthValue.textContent = lengthInput.value;
+});
+
+generatorForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  generatePassword();
+});
+
+copyButton.addEventListener("click", async () => {
+  if (!passwordOutput.value) {
+    generatePassword();
+  }
+
+  if (!passwordOutput.value) {
+    return;
+  }
+
+  await navigator.clipboard.writeText(passwordOutput.value);
+  generatorStatus.textContent = "Password copied to clipboard.";
+});
+
+generatePassword();
+""",
+)
+
 
 class ChatHandler(BaseHTTPRequestHandler):
     server_version = "OasisChat/1.0"
@@ -479,6 +646,10 @@ class ChatHandler(BaseHTTPRequestHandler):
             self._send_text(HTTPStatus.OK, INDEX_HTML, "text/html")
             return
 
+        if parsed.path == "/password-generator":
+          self._send_text(HTTPStatus.OK, PASSWORD_HTML, "text/html")
+          return
+
         if parsed.path == "/styles.css":
             self._send_text(HTTPStatus.OK, STYLES_CSS, "text/css")
             return
@@ -486,6 +657,10 @@ class ChatHandler(BaseHTTPRequestHandler):
         if parsed.path == "/app.js":
             self._send_text(HTTPStatus.OK, APP_JS, "application/javascript")
             return
+
+        if parsed.path == "/password.js":
+          self._send_text(HTTPStatus.OK, PASSWORD_JS, "application/javascript")
+          return
 
         if parsed.path == "/api/messages":
             self._handle_messages(parsed.query)
