@@ -117,15 +117,15 @@ PASSWORD_HTML = load_text(
   <body>
     <main class=\"shell\">
       <section class=\"hero hero-password\">
-        <div>
-          <p class=\"eyebrow\">Utility page</p>
-          <h1>Password Generator</h1>
-          <p class=\"lede\">Create strong, customizable passwords in the browser. Adjust the length and character mix, then copy the result in one click.</p>
-        </div>
+        <p class=\"eyebrow\">Security utility</p>
+        <h1>Generate strong passwords with a clean, modern web experience.</h1>
+        <p class=\"lede\">Oasis now presents itself as a password generator first, with a dedicated tool page and a lightweight chat section below for reference and testing.</p>
+      </section>
 
+      <section class=\"panel\" id=\"chat-panel\">
         <div class=\"nav-links\">
           <a class=\"nav-link\" href=\"/\">Back to chat</a>
-          <a class=\"nav-link nav-link-active\" href=\"/password-generator\">Password generator</a>
+            <h2>Chat Reference Panel</h2>
         </div>
       </section>
 
@@ -629,7 +629,10 @@ class ChatHandler(BaseHTTPRequestHandler):
         self.send_header("Content-Length", str(len(data)))
         self.send_header("Cache-Control", "no-store")
         self.end_headers()
-        self.wfile.write(data)
+        try:
+            self.wfile.write(data)
+        except (BrokenPipeError, ConnectionResetError, OSError):
+            pass
 
     def _send_text(self, status: HTTPStatus, content: str, content_type: str) -> None:
         data = content.encode("utf-8")
@@ -638,7 +641,10 @@ class ChatHandler(BaseHTTPRequestHandler):
         self.send_header("Content-Length", str(len(data)))
         self.send_header("Cache-Control", "no-store")
         self.end_headers()
-        self.wfile.write(data)
+        try:
+            self.wfile.write(data)
+        except (BrokenPipeError, ConnectionResetError, OSError):
+            pass
 
     def do_GET(self) -> None:
         parsed = urlparse(self.path)
@@ -727,7 +733,7 @@ def main() -> None:
     seed_welcome_message()
 
     server = ThreadingHTTPServer((args.host, args.port), ChatHandler)
-    print(f"Oasis Chat running at http://{args.host}:{args.port}")
+    print(f"Oasis Password Generator running at http://{args.host}:{args.port}")
 
     try:
         server.serve_forever()
