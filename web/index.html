@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Oasis Chat</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <p class="eyebrow">Realtime conversation space</p>
+        <h1>Oasis Chat</h1>
+        <p class="lede">A clean browser-based chat room powered by Python. Open it in multiple tabs or share the link with teammates.</p>
+      </section>
+
+      <section class="panel">
+        <header class="panel-header">
+          <div>
+            <h2>Live Room</h2>
+            <p id="status">Connecting to the room...</p>
+          </div>
+          <div class="badge" id="onlineCount">0 messages</div>
+        </header>
+
+        <div class="chat-log" id="chatLog" aria-live="polite"></div>
+
+        <form class="composer" id="composer">
+          <input id="nameInput" name="name" type="text" maxlength="32" placeholder="Your name" />
+          <input id="messageInput" name="message" type="text" maxlength="500" placeholder="Type a message" autocomplete="off" />
+          <button type="submit">Send</button>
+        </form>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
